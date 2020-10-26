@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--table은 표를 작성하는 태그-->
+    <!--tr - 행, td - 열-->
+    <!-- style: css디자인을 넣는 속성-->
+    <table border="1" style="width: 300px">
+      <tr>
+        <!-- th: 제목을 표현, 자동 가운데 정렬-->
+        <th>이름</th>
+        <th>성별</th>
+        <th>주소</th>
+        <td>나이</td>
+        <!-- rowspan: 행 합치기-->
+        <td rowspan="4">추가..</td>
+      </tr>
+
+      <tr>
+        <td>홍길동</td>
+        <td>남자</td>
+        <td>서울</td>
+        <td>45세</td>
+      </tr>
+
+      <tr>
+        <td>홍길자</td>
+        <td>여자</td>
+        <td>부산</td>
+        <td>45세</td>
+      </tr>
+      <tr>
+        <!-- colspan: 열을 합쳐준다, (columspan) -->
+        <!-- align: 정렬 방향-->
+        <td colspan="4" align="right">합계 2명</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+</head>
+<body>
+	<h1>Emp정보</h1>
+	<form action="">
+		<table style="width: 300">
+			<tr>
+				<td>사원번호:</td>
+				<td><input type="text" name="job" /></td>
+			</tr>
+			<tr>
+				<td>이름: <input type="text" name="name" /><br /></td>
+				</<td>
+			</tr>
+			<tr>
+				<td>성별:</td>
+			</tr>
+			<tr>
+				<td>직업:</td>
+			</tr>
+			<tr>
+				<td>상사:</td>
+			</tr>
+			<tr>
+				<td>입사일:</td>
+			</tr>
+
+		</table>
+	</form>
+	
+</body>
+</html>
