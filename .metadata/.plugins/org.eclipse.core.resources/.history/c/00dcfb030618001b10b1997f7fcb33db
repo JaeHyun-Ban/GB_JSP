@@ -1,0 +1,98 @@
+<%@page import="java.util.Random"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	/*
+	1. 정수를 저장하는 list를 생성
+	2. 1~45까지 랜던한 변수를 생성하고 리스트에 저장
+	3. 중복되지 않는 숫자로 6개의 번호를 저장하자
+	4. 화면에 출력
+	5. set을 이용해서도 처리
+	*/
+%>
+<%!
+	public int ranNum(){
+		int ran = (int)(Math.random()*46) + 1;
+		return ran;
+	}
+	public int index = 0;
+	
+%>
+<%
+	ArrayList<Integer> list = new ArrayList<>();
+	
+%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<!-- 랜덤값 입력 -->
+	<%
+		while(index == 6){
+			list.add(ranNum());
+			
+			for(int i = 0; i <= list.size(); i++){
+				if(list.get(i) == list.get(index)){
+					continue;
+				}
+			}
+			index++;
+		}
+		 
+	%>
+	<%=list.toString() %>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
