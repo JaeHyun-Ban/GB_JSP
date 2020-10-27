@@ -74,7 +74,7 @@
 	<tr>
 		<% for (int i = 1; i < 21; i++) { %>
 
-		<td><%out.println(i); %><input type="checkbox" name="quiz"></td><br>
+		<td><%out.println(i); %><input type="checkbox" name="quiz"></td>
 
 		<%}%>
 	</tr>

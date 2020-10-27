@@ -16,7 +16,7 @@
 	int ran = r.nextInt(members.length);//프렌즈 숫자만큼
 	
 	//변수화를 시켜놔야 아래에서 쉽게 뽑아 쓸 수 있다.
-	String name = members[ran]; //선택된 ㅇ소
+	String name = members[ran]; //선택된 요소
 	list.add(name);//배열의 랜덤 요소 리스트에 추가
 	
 	int count = 0;
@@ -33,8 +33,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<p>
 		<b>[<%=name%>]</b>님이 입장<br>
 		현재 같은 카카오 프렌즈는 <%=count%>명입니다.
@@ -44,8 +42,6 @@
 	<p>
 		<%=list.toString()%>(<%=list.size() %>명 참가중)
 	</p>
-	
-
 </body>
 </html>
 
