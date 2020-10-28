@@ -1,0 +1,80 @@
+package com.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/OutServlet")
+public class OutServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public OutServlet() {
+        super();
+        
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter() - 클라이언트에게 문자 텍스트를 보여줌
+		
+		//서블릿에서 out객체를 이용해서 브라우저 화면으로 문자열 데이터를 전송할 수 있다.
+		PrintWriter out = response.getWriter(); //브라우저화면에 출력할 PrintWriter객체를 얻는방법
+		
+		
+		out.println("냐냐냐야냥냐얀얀야냥냥");
+		response.setCharacterEncoding("utf-8");
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
