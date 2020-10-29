@@ -1,0 +1,52 @@
+package com.session;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+	
+	//DB가정
+	private static List<User> userList = new ArrayList<>();
+
+	
+	public static void setUser(User user) {
+		userList.add(user);
+	}
+	
+	public String getUser(String id) {
+		String str = "";
+		for(User u : userList) {
+			if(!u.getId().equals(id)) {
+				str = null;
+			} else {
+				str = u.getId();
+			}
+		}
+		return str;
+	}
+	
+	public static String getPw(String pw) {
+		String p = "";
+		for(User u : userList) {
+			if(u.getPw().equals(pw)) {
+				p = pw;
+			} else {
+				p = null;
+			}
+		}
+		return p;
+	}
+	
+	//회원탈퇴
+	public void deleteUser(String id) {
+		for(User u : userList) {
+			if(u.equals(id)) {
+				userList.remove(index)
+			}
+		}
+		
+		
+	}
+	
+	
+}

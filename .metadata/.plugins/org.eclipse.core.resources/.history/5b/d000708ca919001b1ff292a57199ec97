@@ -1,0 +1,21 @@
+package com.session;
+
+public class User {
+
+	//은닉된 클래스
+	private String id;
+	private String pw;
+	private String name;
+	private String birth;
+	
+	
+	public User() {
+	
+	}
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String id = (String) session.getAttribute("id");
+	String nick = (String) session.getAttribute("nick");
+%>
+    
+    
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h2>id: <%=id %>(<%=nick %>)님 환영합니다!</h2>
+	<!-- 이 화면은 로그인 하지 못한사람은 들어올 수 없다 -->
+	
+</body>
+</html>

@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%	
+	//쿠키 = servlet에서 제공
+	//쿠키 사용방법
+	//1. 생성자의 매개변수 (쿠키이름(문자열), 쿠키값)을 지정
+	Cookie cookie = new Cookie("choco", "초코칩쿠키");
+
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

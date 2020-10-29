@@ -6,3 +6,7 @@
 1603862725504	Delete element
 1603862726690	Delete element
 1603873343972	Rename type 'outServlet'
+1603949660327	Move 'session_quiz' to 'WebContent'
+1603950048744	Copy package
+1603950068073	Rename package 'com.session.copy'
+1603951980949	Encapsulate field 'userList'

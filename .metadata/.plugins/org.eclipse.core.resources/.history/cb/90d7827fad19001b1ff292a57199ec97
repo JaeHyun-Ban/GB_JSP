@@ -1,0 +1,18 @@
+package com.session;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+	
+	//DB가정
+	private static final List<User> userList = new ArrayList<>();
+
+	public static List<User> getUserList() {
+		return userList;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,33 @@
+package com.session;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+	
+	//DB가정
+	private static List<User> userList = new ArrayList<>();
+
+	public static List<User> getUserList() {
+		return userList;
+	}
+
+	public static void setUserList(List<User> userList) {
+		UserRepository.userList = userList;
+	}
+	
+	public String getUser(String id) {
+		for(User u : userList) {
+			if(!u.getId().equals(id)) {
+				return null;
+			} else {
+				return u.getId();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+}

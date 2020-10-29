@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 
 
-<style type>
-	.center {align-content: center;}
+<style>
+	.center {text-align: center;}
 
 
 </style>
