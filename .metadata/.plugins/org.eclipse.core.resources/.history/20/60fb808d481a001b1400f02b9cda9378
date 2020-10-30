@@ -1,0 +1,79 @@
+<%@page import="java.util.UUID"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%	
+	//랜덤한 16진수의 값을 뽑아서 알려준다?
+	UUID uuid = UUID.randomUUID();
+	System.out.println(uuid);	
+	
+	//문자열 잘라주기("-")
+	String[] arr = uuid.toString().split("-");
+	
+	
+	
+	
+	
+
+%>    
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<h2>인증페이지</h2>
+	<form action="">
+		인증문자: <b><i><%=arr[1] %></i></b>
+	</form>
+	
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

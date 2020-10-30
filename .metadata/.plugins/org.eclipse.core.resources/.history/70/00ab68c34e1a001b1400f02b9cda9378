@@ -1,0 +1,107 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%	
+
+	
+	request.setCharacterEncoding("utf-8");
+	String auth = (String)session.getAttribute("authYN");
+	
+	//인증 안된사람은 페이지에 못들어오게 막기
+	if(session.getAttribute("authYN") == null){
+		response.sendRedirect("auth.jsp");
+		
+	}
+	
+%>    
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>application</title>
+<!-- 스타일은 헤드에서 설정 -->
+
+<style type="text/css">
+	.mystyle > div{
+	 text-align: center;
+	}
+	
+</style>
+
+</head>
+<body>
+	
+	<!-- 반복문을 이용한 박스 여러개 생성 -->
+	<div class="mystyle">
+		<h2>영화 좌석 예약</h2>
+		<h4>예약할 좌석을 체크하세요</h4>
+	
+		
+		<form action="">
+			<% for(char c = 'A'; c <= 'Z'; c++) { %>
+				<small><%=c %></small>&nbsp;
+			<% } %>
+			<br/>
+			
+			<% for(int i = 1; i <= 6; i++) { %>
+				<%=i %>
+				<%for(char c = 'A'; c <= 'Z'; c++) { %>
+					<input type="checkbox" name="seat">
+				<%} %>
+				<br/>
+			<% } %>
+		</form>
+		
+	</div>
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

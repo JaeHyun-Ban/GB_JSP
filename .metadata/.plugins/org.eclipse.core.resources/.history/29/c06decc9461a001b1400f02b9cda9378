@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%	
+	//스크립트릿!
+	
+	//application은 session과 사용방법이 거의 동일하며,
+	//생명주기가 톰캣을 stop할 때 까지 1개  유지된다.
+	
+	int total = 0;
+	
+	total++;
+	
+	session.setAttribute("total", total); //세션이나 쿠키는 Map의 형식으로 사용하고 있다.
+	
+	
+	
+%>
+
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	값: <%=total %>
+	
+</body>
+</html>

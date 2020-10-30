@@ -1,0 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!--param - forward로 넘어갈 때 값을 실어서 보내주는  -->    
+<jsp:forward page="param_ex03.jsps">
+	<jsp:param value="홍길자" name="name"/>
+</jsp:forward>

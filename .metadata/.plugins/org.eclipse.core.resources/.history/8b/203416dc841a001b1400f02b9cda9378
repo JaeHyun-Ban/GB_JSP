@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	/*
+	앞에서 넘어온 폼값을 받아서 평균을 구한다
+	평균이 60이상 - score_quiz03으로 이동, 평균과 이름을 출력
+	평균이 60이하 - score_quiz04으로 이동, "~님은 불합격입니다" 출력
+	
+	조건: 세션을 사용하지 않는다.
+	
+	*/
+	
+	request.setCharacterEncoding("utf-8"); //인코딩
+	String name = request.getParameter("name");
+	String kor = request.getParameter("kor");
+	String eng = request.getParameter("eng")
+	
+	
+	
+%>

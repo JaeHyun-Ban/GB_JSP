@@ -10,3 +10,5 @@
 1603950048744	Copy package
 1603950068073	Rename package 'com.session.copy'
 1603951980949	Encapsulate field 'userList'
+1604040497691	Rename package 'com.foward'
+1604040507182	Rename type 'forward'

@@ -1,0 +1,118 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//예약된 좌석값을 받기
+	//예약정보 = list로 저장
+	//>중복된 예약정보가 있는지 확인
+	//>>새로운 list에 추가
+	//예약 <ㅡ> 담기
+	//>length or size로 비교
+	//>list.addAll사용
+	
+	request.setCharacterEncoding("utf-8");
+	//1.좌석 정보를 받는다
+	String[] arr = request.getParameterValues("seat"); 
+	List<String> seats = new ArrayList<>();
+	for(String s : arr){
+		seats.add(s);
+	}
+	
+	//2.좌석정보를 저장할 List생성
+	List<String> list = new ArrayList<>(); //최종 저장용
+	List<String> tmp = new ArrayList<>(); //잠깐 담을용
+	
+	//3.application에서 좌석정보가 존재하면 2번 리스트에 저장>>??????
+	if(application.getAttribute("list") != null){
+		list = (List<String>)application.getAttribute("list");	
+	}
+	
+	
+	//4.좌석정보를 비교해서, 중복이 없다면 하나씩 저장할 사본리스트를 생성
+	//>좌석정보와 2번 리스트를 비교해 중복된 좌석이 아니라면, 2번 리스트에 좌석전부를 추가
+	if(!list.containsAll(seats)){
+		tmp = list;
+	} else {
+		tmp.addAll(seats);
+	}
+	
+	//5.사본리스트와 좌석정보의 길이가 같다면 중복이 없으므로
+	//>2번 리스트에 통째로 사본리스트추가(addAll)
+	if(tmp.size() == seats.size()){
+		list.addAll(tmp);
+	}
+	
+	//6.application에 같은 이름으로 저장
+	application.setAttribute("list", list);
+	//7.화면에 예약 성공실패의 결과를 출력해주세요.
+	if(list.contains(tmp)){
+		//예약성공
+	}else{
+		//예약실패
+	}
+	
+
+	
+	
+	
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>예약 성공!</h2>
+	<h3>좌석 번호</h3>
+	<% for(String s : list){ %>
+		<%=s %>
+	<% } %>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
