@@ -16,27 +16,72 @@
 
 <section>
 	<div align="center">
-		<h2>환영합니다</h2>
-		<table>
-			<tr>
-				<td>아이디: <%=vo.getId() %><br/></td>
-			</tr>
-			<tr>
-				<td>비밀번호: <%=vo.getPw() %></td>
-			</tr>
-			<tr>
-				<td>이름: <%=vo.getName() %></td>
-			</tr>
-			<tr>
-				<td>이메일: <%=vo.getEmail() %></td>
-			</tr>
-			<tr>
-				<td>주소: <%=vo.getAddress() %></td>
-			</tr>
-		</table>
+		<h2><%=vo.getId() %>(<%=vo.getName() %>)님이 로그인 중입니다</h2>
+		
+		<a href="update.jsp">[정보 수정]</a>
+		<a href="delete.jsp">[회원 탈퇴]</a>
 	
 	</div>
 </section>
 
 
 <%@ include file="../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

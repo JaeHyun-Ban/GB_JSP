@@ -1,12 +1,14 @@
 package com.myweb.user.model;
 import java.sql.*;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import com.myweb.util.JdbcUtil;
 
 public class UserDAO {
 	
 	//DAO + VO = Model
-	
 	
 	//싱글톤 형식
 	//UserDAO는 불필요하게 여러개 만들어질 필요가 없기 때문에 
@@ -20,13 +22,18 @@ public class UserDAO {
 	private UserDAO() {
 		//생성자를 생성시 마다 드라이버 로드
 		//드라이버 로드
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+		try {	
+//			Class.forName("oracle.jdbc.driver.OracleDriver"); //커넥션 풀
+			//커넥션 풀을 얻는 작업
+			InitialContext ctx = new InitialContext(); //초기설정 정보가 저장되는 객체
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle"); 
+			//java:comp/env/ > 필수 경로
+			//DataSource - javax.sql
+			
 		} catch (Exception e) {
 			System.out.println("드라이버 호출 에러 발생");
 			e.printStackTrace();
 		}
-		
 	}
 	
 	//3. 외부에서 객체생성을 요구할 때 getter메서드를 통해 1번의 객체를 반환
@@ -36,10 +43,12 @@ public class UserDAO {
 	
 	//---------------------------------------------------------------------
 	//DB연결 변수들을 상수로 선언
-	private String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
-	private String uid = "JSP";
-	private String upw = "jsp";
-
+//	private String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
+//	private String uid = "JSP";
+//	private String upw = "jsp";
+	//>커넥션 풀에 미리 등록함
+	
+	private DataSource ds;
 	
 	//멤버변수 선언
 	private Connection conn = null;
@@ -57,7 +66,8 @@ public class UserDAO {
 		
 		try {
 			//1. conn객체 생성
-			conn = DriverManager.getConnection(url, uid, upw);
+//			conn = DriverManager.getConnection(url, uid, upw);
+			conn = ds.getConnection();//커넥션풀을 통해 연결
 			
 			//2. pstmt객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -89,7 +99,8 @@ public class UserDAO {
 		String sql = "select * from users where id = ?";
 		try {
 			//1. conn객체 생성
-			conn = DriverManager.getConnection(url, uid, upw);
+//			conn = DriverManager.getConnection(url, uid, upw);
+			conn = ds.getConnection();//커넥션풀을 통해 연결
 			
 			//2. pstmt객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -102,8 +113,6 @@ public class UserDAO {
 			} else { //x = 중복 x
 				result = 0;
 			}
-			
-
 		} catch (Exception e) {
 			System.out.println("중복검사 메서드 에러 발생");
 			e.printStackTrace();
@@ -123,7 +132,8 @@ public class UserDAO {
 		
 		try {
 			//1.연결 생성
-			conn = DriverManager.getConnection(url, uid, upw);
+//			conn = DriverManager.getConnection(url, uid, upw);
+			conn = ds.getConnection();//커넥션풀을 통해 연결
 			
 			//2.pstmt객체생성 >>> !!!!!!!
 			pstmt = conn.prepareStatement(sql);
@@ -161,6 +171,72 @@ public class UserDAO {
 		return vo;
 	}
 	
+	
+	//회원정보 업데이트
+	public int update(UserVO vo) {
+	
+		int result = 0; //결과값을 반환
+		
+		//update - sql생성
+		String sql = "update users set pw = ?, name = ?, email = ?, address = ? "
+								+ "where id = ?";
+		
+		try {
+			//1. conn객체 생성 - 3개
+//			conn = DriverManager.getConnection(url, uid, upw);
+			conn = ds.getConnection();//커넥션풀을 통해 연결
+			
+			//2. pstmt생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getPw());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getAddress());
+			pstmt.setString(5, vo.getId());
+			
+			result = pstmt.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			System.out.println("회원정보 수정 메서드에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+
+		return result;
+	}
+	
+	
+	public int delete(String id) {
+		
+		int result = 0;
+		
+		//삭제 sql생성
+		String sql = "DELETE FROM users WHERE id = ?";
+		
+		try {
+			//conn객체 생성
+//			conn = DriverManager.getConnection(url, uid, upw);
+			conn = ds.getConnection();//커넥션풀을 통해 연결
+			
+			//pstmt생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			result = pstmt.executeUpdate(); //insert, update, delete에 사용되는 executeQuery
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return result;
+		
+	}
 	
 	
 	
