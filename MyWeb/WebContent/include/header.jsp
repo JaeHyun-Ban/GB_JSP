@@ -67,7 +67,7 @@
                         <a href="<%=request.getContextPath() %>/member/member.jsp">Member</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath() %>">BOARD</a>
+                        <a href="${pageContext.request.contextPath }/board/list.board">BOARD</a>
                     </li>
                     <%-- <% if(session.getAttribute("login") == null) { %>
                     <% } else {%>
