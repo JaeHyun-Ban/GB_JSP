@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.myweb.board.service.BoardService;
 import com.myweb.board.service.ContentServiceImpl;
+import com.myweb.board.service.DeleteServiceImpl;
 import com.myweb.board.service.GetListServiceImpl;
 import com.myweb.board.service.RegistServiceImpl;
+import com.myweb.board.service.UpHitServiceImpl;
+import com.myweb.board.service.UpdateServiceImpl;
+import com.myweb.util.PageVO;
 
 //1.글 컨트롤러
 @WebServlet("*.board")
@@ -79,6 +83,10 @@ public class BoardContorller extends HttpServlet {
 			
 		} else if(command.equals("/board/content.board")) {//게시글 상세보기
 			
+			//조회수 증가 작업 > 상세보기 할 때마다 함께 실행
+			service = new UpHitServiceImpl();
+			service.execute(request, response);
+			
 			service = new ContentServiceImpl();
 			service.execute(request, response);
 			
@@ -99,6 +107,42 @@ public class BoardContorller extends HttpServlet {
 			request.getRequestDispatcher("board_modify.jsp").forward(request, response);
 			
 			
+		} else if(command.equals("/board/update.board")) { //게시글 수정 처리
+			
+			/*
+			 * 1.UpdateServiceImpl()을 생성하고 execute()메서드 실행
+			 * 2.서비스에서 bno,title, content를 받아서 DAO의 update() 메서드를 실행
+			 * 3.update()는 sql문으로 수정을 진행
+			 * 4.컨트롤러에서는 페이지 이동을 content화면으로 이동
+			 */
+			
+			service = new UpdateServiceImpl();
+			service.execute(request, response);
+			
+			//성공했다면 값을 가진 그대로 다시 content로 보내주기 >> 이건 MVC2가 아니야
+//			request.getRequestDispatcher("content.board").forward(request, response);
+			
+			//※※※※※※※※※※※※※※※
+			//MVC2방식 = 다시 컨트롤러로 보내서 처리 - sendre > 컨트롤러
+			//※※※※※※※※※※※※※※※
+			response.sendRedirect("content.board?bno=" + request.getParameter("bno"));
+			
+			
+		} else if(command.equals("/board/delete.board")) { //게시글 삭제
+			/*
+			 * 1.화면에서 delete.board요청으로 필요한 값을 get방식으로 념겨준다
+			 * 2.DeleteServiceImpl() 생성하고 dao의 delete()메서드로 실행
+			 * 3.삭제 진행후에 목록페이지로 이동
+			 */
+			
+			service = new DeleteServiceImpl();
+			service.execute(request, response);
+			
+			
+			
+			//삭제 진행 후  > 컨트롤러 > 글 리스트
+			response.sendRedirect("list.board");
+			
 		}
 		
 		
@@ -109,6 +153,7 @@ public class BoardContorller extends HttpServlet {
 	
 	
 }
+
 
 
 

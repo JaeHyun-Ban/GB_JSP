@@ -28,19 +28,21 @@ input[type=button] {
 	<h3>게시판 글 수정 페이지</h3>
 	<hr>
 
-	<form action="m
-
-" method="post">
-
+	<form action="update.board" method="post">
+		<%-- 반드시 필요한 값을 숨겨서 보내는 input- 'hidden' --%>
+		<%-- form안에서 화면에 보이지 않지만 반드시 넘겨줘야 하는 값을 숨겨서 보내주는 역활 --%>
+		<input type="hidden" name="bno" value="${vo.bno }">
+		<input type="hidden" name="writer" value="${vo.writer }">
+		
 		<table border="1" width="500">
 
 			<tr>
 				<td>글 번호</td>
-				<td>${vo.bno }</td>
+				<td><input type="text" name="bno" value="${vo.bno }" disabled></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td>${vo.writer }</td>
+				<td><input type="text" name="writer" value="${vo.writer }" disabled ></td>
 			</tr>
 			<tr>
 				<td>글 제목</td>

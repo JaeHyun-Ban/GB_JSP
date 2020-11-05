@@ -26,10 +26,17 @@
 <fullyQualifiedTypeName name="com.myweb.board.service.BoardService"/>
 <fullyQualifiedTypeName name="com.myweb.board.service.GetListServiceImpl"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="com.myweb.board.model.BoardDAO"/>
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
-<fullyQualifiedTypeName name="com.myweb.util.JdbcUtil"/>
-<fullyQualifiedTypeName name="com.myweb.board.model.BoardVO"/>
 <fullyQualifiedTypeName name="com.myweb.board.service.ContentServiceImpl"/>
+<fullyQualifiedTypeName name="com.myweb.board.service.DeleteServiceImpl"/>
+<fullyQualifiedTypeName name="com.myweb.board.service.UpdateServiceImpl"/>
+<fullyQualifiedTypeName name="com.myweb.board.service.UpHitServiceImpl"/>
+<fullyQualifiedTypeName name="com.myweb.board.model.BoardDAO"/>
+<fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+<fullyQualifiedTypeName name="com.myweb.board.model.BoardVO"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="com.myweb.util.PageVO"/>
+<fullyQualifiedTypeName name="com.myweb.util.JdbcUtil"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

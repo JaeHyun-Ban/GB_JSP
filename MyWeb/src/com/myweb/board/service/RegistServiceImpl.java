@@ -22,10 +22,6 @@ public class RegistServiceImpl implements BoardService{
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.regist(writer, title, content);
 		
-		//System.out.println(writer);
-		//System.out.println(title);
-		//System.out.println(content);
-		
 	}
 	
 

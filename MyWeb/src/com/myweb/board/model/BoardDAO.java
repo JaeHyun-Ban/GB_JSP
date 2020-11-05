@@ -74,7 +74,88 @@ public class BoardDAO {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 	}
+	
+	//게시글 + 페이징 처리 조회
+	public ArrayList<BoardVO> getList(int pageNum, int amount){
+		
+		ArrayList<BoardVO> list = new ArrayList<>();
+		
+		String sql ="SELECT * " + 
+				"FROM(" + 
+				"    SELECT ROWNUM rn, " + 
+				"           bno, " + 
+				"           writer, " + 
+				"           title, " + 
+				"           content, " + 
+				"           regdate, " + 
+				"           hit " + 
+				"    FROM (SELECT * " + 
+				"          FROM board " + 
+				"          ORDER BY bno DESC) " + 
+				"    		) " + 
+				"WHERE rn > ? AND rn <= ?";
+		
+		try {
+			
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pageNum - 1)*amount);//(페이지번호-1)*리스트범위
+			pstmt.setInt(2, pageNum * amount);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int bno = rs.getInt("bno");
+				String writer = rs.getString("writer");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Timestamp regdate = rs.getTimestamp("regdate");//java.sql
+				int hit = rs.getInt("hit");
+				
+				BoardVO vo = new BoardVO(bno, writer, title, content, regdate, hit);
+				list.add(vo); //리스트에 추가		
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO_getList()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return list;
+		
+	}
+	
+	//전체 게시글 수 - total
+	public int getTotal() {
+		
+		int total = 0;
+		
+		//count에 변수명을 생성해서 가져온다
+		String sql = "SELECT count(*) as total FROM board";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt("total");
+			}
 
+		} catch (Exception e) {
+			System.out.println("getTotal()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	
+	/* 페이징 처리 전 getList()
 	public ArrayList<BoardVO> getList() {
 		
 		ArrayList<BoardVO> list = new ArrayList<>();
@@ -118,6 +199,8 @@ public class BoardDAO {
 		
 		return list;
 	}
+	*/
+	
 
 	public BoardVO getContent(String bno) {
 		
@@ -156,6 +239,78 @@ public class BoardDAO {
 		}
 		
 		return vo;
+	}
+
+	public void update(String bno, String title, String content) {
+
+		String sql = "UPDATE board SET title = ?, content = ? WHERE bno = ?";
+		
+		try {
+			
+			conn = ds.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, bno);
+			
+			pstmt.executeUpdate();
+			//단순 업데이트만 할 것
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO_update()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+	}
+
+	public void delete(String bno) { //게시글 삭제 진행, 반환x
+		
+		String sql = "DELETE FROM board WHERE bno = ?";
+		
+		try {
+			
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			pstmt.executeUpdate();//반환x
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO_delete()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		
+	}
+	
+	//조회수 업데이트 메서드
+	//중복을 방지하기 위해서 cookie를 생성해준다
+	public void upHit(String bno) {
+		
+		String sql = "UPDATE board SET hit = hit + 1 WHERE bno = ?";
+		
+		
+		try {
+			
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			System.out.println("BoardDAO_upHit()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);	
+		}
+		
+		
 	}
 	
 	

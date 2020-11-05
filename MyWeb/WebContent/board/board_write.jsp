@@ -34,7 +34,7 @@ input[type=submit] {
 				<td>글 제목</td>
 				<td>
 					<%-- 글제목 3글자 이상 작성  - pattern="[A-Za-z가핳0-9]{3}"--%>
-					<input type="text" name="title"  required placeholder="3글자 이상" >
+					<input type="text" name="title" required placeholder="3글자 이상" >
 				</td>
 			</tr>
 			<tr>
