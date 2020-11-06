@@ -4,27 +4,16 @@
     
 <%@ include file="../include/header.jsp"%>
 
-<%
-	//이 페이지에 진입할 시, 비밀번호를 제외한 회원의 정보를 input태그에 처리합니다.
-	request.setCharacterEncoding("utf-8");
-	UserVO vo =  (UserVO)session.getAttribute("login");
-	String id = vo.getId();
-	String name = vo.getName();
-	String email = vo.getEmail();
-	String address = vo.getAddress();
-%>
-
-
 <section>
 	<div align="center">
 		<h2>회원정보 연습</h2>
 		<hr/>
-		<form action="update_ok.jsp" method="post" name="regForm">
+		<form action="updateForm.user" method="post" name="regForm">
 			<table>
 				<tr>
 					<!-- id를 PK로 생성해서 수정이 불가능하다 -->
 					<td>아이디:</td>
-					<td><input type="text" name="id" value="<%=id %>" placeholder="4글자 이상" readonly></td>
+					<td><input type="text" name="id" value="${sessionScope.user.id }" placeholder="4글자 이상" readonly></td>
 					<!-- disable: 수정x 값이 안넘어감 || readonly: 수정x, 갑은 넘어감 -->
 				</tr>
 				<tr>
@@ -37,15 +26,15 @@
 				</tr>
 				<tr>
 					<td>이름:</td>
-					<td><input type="text" name="name" value="<%=name %>"></td>
+					<td><input type="text" name="name" value="${sessionScope.user.name }"></td>
 				</tr>
 				<tr>
 					<td>이메일:</td>
-					<td><input type="email" name="email" value="<%=email %>"></td>
+					<td><input type="email" name="email" value="${sessionScope.user.email }"></td>
 				</tr>
 				<tr>
 					<td>주소:</td>
-					<td><input type="text" name="address" value="<%=address %>"></td>
+					<td><input type="text" name="address" value="${sessionScope.user.address }"></td>
 				</tr>
 			</table>
 		</form>

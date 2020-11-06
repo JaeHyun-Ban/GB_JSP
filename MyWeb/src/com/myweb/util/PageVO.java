@@ -61,8 +61,8 @@ public class PageVO {
 		//11번 조회시 endPage = 14, realEnd = 14 -> 다음버튼 활성화 false
 		this.next = realEnd > endPage;
 		
-		System.out.println("PageVO [startPage=" + startPage + ", endPage=" + endPage + ", realEnd=" + realEnd + ", prev=" + prev + ", next=" + next
-				+ ", pageNum=" + pageNum + ", amount=" + amount + ", total=" + total + "]");
+//		System.out.println("PageVO [startPage=" + startPage + ", endPage=" + endPage + ", realEnd=" + realEnd + ", prev=" + prev + ", next=" + next
+//				+ ", pageNum=" + pageNum + ", amount=" + amount + ", total=" + total + "]");
 		
 	}
 

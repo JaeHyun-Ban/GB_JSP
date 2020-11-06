@@ -9,7 +9,7 @@ div로 나누어서 사용하면 된다 -->
 	<div align="center">
 		<h2>회원가입 연습</h2>
 		<hr/>
-		<form action="join_ok.jsp" method="post" name="regForm">
+		<form action="joinForm.user" method="post" name="regForm">
 			<table >
 				<tr>
 					<td>아이디:</td>
@@ -37,6 +37,13 @@ div로 나누어서 사용하면 된다 -->
 				</tr>
 			</table>
 			<!-- table안에는 tr과 td만 존재해야 한다 -->
+			
+			<br/>
+			<p>${msg }</p><%-- 중복 시 가입창 아래에 문구를 띄워줌 --%>
+			
+			
+			
+			
 		</form>
 		<!-- class에는 header에서 참조하는 bootstrap을 이용해 생성한 디자인이다, 짱신기하네 -->
 		<!-- onclick안에는 자바스크립트코드를 작성한다 -->

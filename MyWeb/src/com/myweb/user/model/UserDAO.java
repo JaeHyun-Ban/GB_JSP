@@ -105,7 +105,7 @@ public class UserDAO {
 			//2. pstmt객체 생성
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			rs = pstmt.executeQuery(sql);//select구문 - executeQuery
+			rs = pstmt.executeQuery();//select구문 - executeQuery
 			
 			//rs의 결과가 1줄이거나 1줄이 아닐것
 			if(rs.next()) { //1줄 = 중복

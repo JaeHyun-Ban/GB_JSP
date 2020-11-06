@@ -73,22 +73,22 @@
                     <% } else {%>
                     <% }%> --%>
                     <c:choose>
-                    	<c:when test="${sessionScope.login == null }">
+                    	<c:when test="${sessionScope.user == null }">
 		                    <li>
 		                    	<%-- el의 pageContext를 이용해서 경로를 얻어올 수 있다. --%>
-		                    	<a href="${pageContext.request.contextPath }/user/login.jsp">LOGIN</a>
+		                    	<a href="${pageContext.request.contextPath }/user/login.user">LOGIN</a>
 		                        <%-- <a href="<%=request.getContextPath() %>/user/login.jsp">LOGIN</a> --%>
 		                    </li>
 		                    <li>
-		                        <a href="${pageContext.request.contextPath }/user/join.jsp" style="color:red">JOIN</a>
+		                        <a href="${pageContext.request.contextPath }/user/join.user" style="color:red">JOIN</a>
 		                    </li>
 	                    </c:when>
 	                    <c:otherwise>
 		                    <li>
-		                        <a href="${pageContext.request.contextPath }/user/logout.jsp">LOGOUT</a>
+		                        <a href="${pageContext.request.contextPath }/user/logout.user">LOGOUT</a>
 		                    </li>
 		                    <li>
-		                        <a href="${pageContext.request.contextPath }/user/mypage.jsp">MyPAGE</a>
+		                        <a href="${pageContext.request.contextPath }/user/mypage.user">MyPAGE</a>
 		                    </li>
 	                    </c:otherwise>
                     </c:choose>

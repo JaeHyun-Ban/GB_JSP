@@ -42,7 +42,7 @@ input[type=button] {
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="writer" value="${vo.writer }" disabled ></td>
+				<td><input type="text" name="writer" value="${sessionScope.user.name }" disabled ></td>
 			</tr>
 			<tr>
 				<td>글 제목</td>

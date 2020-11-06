@@ -7,11 +7,18 @@
 <section>
 	<div align="center">
 		<h2>기존 비밀번호를 입력해주세요</h2>
-		<form action="delete_ok.jsp" method="post">
+		<form action="deleteForm.user" method="post">
 			비밀번호: <input type="password" name="pw">
 			<input type="submit" value="탈퇴" class="btn btn-danger" >
 		</form>
+		
+		<span>${msg }</span><%-- 이렇게 표현해도 됨 --%>
 	</div>
+	
+	<%-- <br/>
+	<div align="center"><b>${msg }</b></div>
+	<br/> --%>
+	
 </section>
 
 
