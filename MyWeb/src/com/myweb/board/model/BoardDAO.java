@@ -16,7 +16,7 @@ public class BoardDAO {
 	//UserDAO는 불필요하게 여러개 만들어질 필요가 없기 때문에 
 	//한개의 객체만 만들어 지도록  Singleton형식으로 설계한다.
 	
-	//1. 나 자신의 객체를 생성햇 1개로 제한단다.
+	//1. 나 자신의 객체를 생성해 1개로 제한한다.
 	private static BoardDAO instance = new BoardDAO();
 	//>static = '1개'
 	
@@ -39,7 +39,7 @@ public class BoardDAO {
 	}
 	
 	//3. 외부에서 객체생성을 요구할 때 getter메서드를 통해 1번의 객체를 반환
-	public static BoardDAO getInstance()	{
+	public static BoardDAO getInstance() {
 		return instance;
 	}
 	

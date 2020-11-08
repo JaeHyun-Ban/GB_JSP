@@ -21,14 +21,11 @@ import com.myweb.util.PageVO;
 public class BoardContorller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
     public BoardContorller() {
         super();
        
     }
 
-
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		dispatcherServlet(request, response);
 	}

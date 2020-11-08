@@ -6,10 +6,10 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/custom.css">
+    <script src="<%=request.getContextPath() %>/https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
     <title>BBS Test</title>   
 </head>
 
@@ -27,15 +27,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="##" style="margin-right: 10px;">메인</a></li>
-                <li class="active"><a href="##">게시판</a></li>
+                <li class="active"><a href="list.bbs">게시판</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="#">회원가입</a></li>
+                        <li><a href="<%=request.getContextPath() %>/user/login.user">로그인</a></li>
+                        <li><a href="<%=request.getContextPath() %>/user/join.user">회원가입</a></li>
                     </ul>
                 </li>
             </ul>
