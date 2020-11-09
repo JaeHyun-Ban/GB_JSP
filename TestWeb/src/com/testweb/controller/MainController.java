@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.testweb.main.service.MainListServiceImpl;
 import com.testweb.main.service.MainService;
 
-@WebServlet("/")
+@WebServlet("")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,18 +37,20 @@ public class MainController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String command = uri.substring(conPath.length());
 		
-		System.out.println("main " + uri);
-		System.out.println("main " + conPath);
+		
+		System.out.println(uri);
+		System.out.println(conPath);
 		System.out.println(command);
+		
 		
 		MainService service = null;
 		
 		if(command.equals("/")) {
-			System.out.println(command);
+			
 			service = new MainListServiceImpl();
 			service.execute(request, response);
 			
-			request.getRequestDispatcher(request.getContextPath()).forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}
 	

@@ -41,9 +41,8 @@ body {
 						<th style="background-color: #9DCAFF; text-align: center;">작성일</th>
 					</tr>
 				</thead>
-				
+				<c:forEach var="vo" items="${mainList }">
 				<tbody>
-					<c:forEach var="vo" items="${mainList }">
 					<tr>
 						<td>${vo.bno }</td>
 						<td><a>${vo.title }</a></td>
@@ -51,9 +50,8 @@ body {
 						<td><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH-mm"/> </td>
 						<%-- <td>2019-09-14 08:05_${num }</td> --%>
 					</tr>
-					</c:forEach>
 				</tbody>
-				
+				</c:forEach>
 			</table>
 		</div>
 

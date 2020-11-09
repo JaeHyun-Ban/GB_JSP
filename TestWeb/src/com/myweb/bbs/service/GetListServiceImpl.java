@@ -18,14 +18,9 @@ public class GetListServiceImpl implements BbsService {
 		//모든 게시글 가져오기
 		ArrayList<BbsVO> list = dao.getList();
 		
-		System.out.println(list.toString());
-		
 		if(list != null) {
 			request.setAttribute("list", list);//리퀘스트로 전달
 		}
-		
-		
-		
 		
 //		//페이징 처리
 //		int pageNum = 1;//시작할 페이지
