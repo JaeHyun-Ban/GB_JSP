@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <!--메인만 적용되는 css영역-->
@@ -42,12 +43,13 @@ body {
 				</thead>
 				
 				<tbody>
-					<c:forEach var="num" begin="1" end="10" step="1">
+					<c:forEach var="vo" items="${mainList }">
 					<tr>
-						<td>${num }</td>
-						<td><a>Test${num }</a></td>
-						<td>Min${num }</td>
-						<td>2019-09-14 08:05_${num }</td>
+						<td>${vo.bno }</td>
+						<td><a>${vo.title }</a></td>
+						<td>${vo.writer }</td>
+						<td><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH-mm"/> </td>
+						<%-- <td>2019-09-14 08:05_${num }</td> --%>
 					</tr>
 					</c:forEach>
 				</tbody>

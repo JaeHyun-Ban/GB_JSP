@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/")
+import com.testweb.main.service.MainListServiceImpl;
+import com.testweb.main.service.MainService;
+
+@WebServlet("/")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +41,14 @@ public class MainController extends HttpServlet {
 		System.out.println("main " + conPath);
 		System.out.println(command);
 		
+		MainService service = null;
+		
 		if(command.equals("/")) {
+			System.out.println(command);
+			service = new MainListServiceImpl();
+			service.execute(request, response);
+			
+			request.getRequestDispatcher(request.getContextPath()).forward(request, response);
 			
 		}
 	

@@ -135,8 +135,47 @@ public class BbsDAO {
 	}
 	
 	//메인화면 최신 공지글 10개 출력
-	public void mainList() {
-		// TODO Auto-generated method stub
+	public ArrayList<BbsVO> mainList() {
+		ArrayList<BbsVO> list = new ArrayList<>();
+		
+		String sql = "SELECT * \r\n" + 
+				"FROM(\r\n" + 
+				"    SELECT ROWNUM r, \r\n" + 
+				"           bno,\r\n" + 
+				"           writer,\r\n" + 
+				"           title,\r\n" + 
+				"           content,\r\n" + 
+				"           regdate\r\n" + 
+				"    FROM (SELECT *\r\n" + 
+				"          FROM bbs\r\n" + 
+				"          ORDER BY bno DESC)\r\n" + 
+				"    ) \r\n" + 
+				"WHERE r > 0 AND r <= 10";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int bno = Integer.parseInt(rs.getString("bno")); 
+				String writer = rs.getString("writer");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				
+				
+				BbsVO vo = new BbsVO(bno, writer, title, content, regdate);
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			System.out.println("mainList()메서드 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return list;
 		
 	}
 

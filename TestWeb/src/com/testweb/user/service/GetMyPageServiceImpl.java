@@ -28,7 +28,7 @@ public class GetMyPageServiceImpl implements BbsService {
 			request.setAttribute("mypage", list);
 			
 		} else { //실패
-			
+			return;
 		}
 
 	}
