@@ -33,7 +33,7 @@ public class GetListServiceImpl implements BoardService{
 		int total = dao.getTotal();//전체 게시글 수 
 		PageVO pageVO = new PageVO(pageNum, amount, total);
 		
-		//세션은 중요한걸 싫고 리퀘스트에 넣어주자
+		//세션은 중요한걸 담고 리퀘스트에 넣어주자
 		//화면으로 가져가기 위해 request에다가 list를 저장
 		request.setAttribute("list", list);
 		

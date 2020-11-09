@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <!--게시판만 적용되는 css-->            
-        <style>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-            .table-striped > tbody > tr {
-                background-color: rgba(255, 255, 255)
-            }
-            .row h2 {
-                color: aliceblue;
-                
-            }
-            .pagination-sm {
-                margin: 0;
-            }
-            
-        </style>
+<!--게시판만 적용되는 css-->            
+<style>
+.table-striped > tbody > tr {
+	background-color: rgba(255, 255, 255)
+}
+.row h2 {
+	color: aliceblue;                
+}
+.pagination-sm {
+	margin: 0;
+}            
+</style>
+
 <%@ include file="../include/header.jsp" %>
         
     <section>
@@ -32,26 +33,21 @@
                             <th style="background-color: #9DCAFF; text-align: center;">작성일</th>
                         </tr>
                     </thead>
+                    
+                    <%-- 게시글을 반복해서 뽑아주기 > 향상된 for문을 이용 --%>
+                    <c:forEach var="vo" items="${list }">
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td><a>Test</a></td>
-                            <td>Min</td>
-                            <td>2019-09-14 08:05</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><a>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</a></td>
-                            <td>MBW</td>
-                            <td>2019-09-15 13:05</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><a>Test Text</a></td>
-                            <td>박인욱</td>
-                            <td>2019-09-15 19:05</td>
+                            <td>${vo.bno }</td>
+                            <td><a href="content.bbs?bno=${vo.bno }">${vo.title }</a></td>
+                            <td>${vo.writer }</td>
+                            <td><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH-mm"/> </td>
+                            <!-- <td>2019-09-14 08:05</td> 이 형태로 포맷 -->
                         </tr>
                     </tbody>
+                    </c:forEach>
+                    
+                    
                 </table>
 
                 <div class="text-center">
@@ -64,7 +60,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">다음</a></li>
                     </ul>
-                    <button class="btn btn-info pull-right">글쓰기</button>
+                    <button class="btn btn-info pull-right" onclick="location.href='write.bbs'">글쓰기</button>
                 </div>
                 
             </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <!--메인만 적용되는 css영역-->
@@ -39,14 +40,18 @@ body {
 						<th style="background-color: #9DCAFF; text-align: center;">작성일</th>
 					</tr>
 				</thead>
+				
 				<tbody>
+					<c:forEach var="num" begin="1" end="10" step="1">
 					<tr>
-						<td>1</td>
-						<td><a>Test</a></td>
-						<td>Min</td>
-						<td>2019-09-14 08:05</td>
+						<td>${num }</td>
+						<td><a>Test${num }</a></td>
+						<td>Min${num }</td>
+						<td>2019-09-14 08:05_${num }</td>
 					</tr>
+					</c:forEach>
 				</tbody>
+				
 			</table>
 		</div>
 

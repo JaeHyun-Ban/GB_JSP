@@ -32,14 +32,14 @@
 					회원가입<small>(가운데정렬)</small>
 				</h2>
 
-				<form action="">
+				<form action="joinForm.user" method="post" name="joinForm">
 					<div class="form-group">
 						<label for="id">아이디</label> <input type="text"
-							class="form-control" id="id" placeholder="아이디를 (영문포함 4~12자 이상)">
+							class="form-control" id="id" name="id" placeholder="아이디를 (영문포함 4~12자 이상)">
 					</div>
 					<div class="form-group">
 						<label for="password">비밀번호</label> <input type="password"
-							class="form-control" id="password"
+							class="form-control" id="password" name="password"
 							placeholder="비밀번호 (영 대/소문자, 숫자, 특수문자 3종류 이상 조합 8자 이상)">
 					</div>
 					<div class="form-group">
@@ -49,18 +49,18 @@
 					</div>
 					<div class="form-group">
 						<label for="name">이름</label> <input type="text"
-							class="form-control" id="name" placeholder="이름을 입력하세요.">
+							class="form-control" id="name" name="name" placeholder="이름을 입력하세요.">
 					</div>
 					<!--input2탭의 input-addon을 가져온다 -->
 					<div class="form-group">
 						<label for="hp">휴대폰번호</label><br> <input
-							class="form-control sel" placeholder="010"> - <input
-							class="form-control sel" placeholder="xxxx"> - <input
-							class="form-control sel" placeholder="xxxx"> FF
+							class="form-control sel" placeholder="010" id="phone1" name="phone1"> - <input
+							class="form-control sel" placeholder="xxxx" id="phone2" name="phone2"> - <input
+							class="form-control sel" placeholder="xxxx" id="phone3" name="phone3"> FF
 					</div>
 					<div class="form-group">
 						<label for="hp">이메일</label><br> <input
-							class="form-control sel">@ <select
+							class="form-control sel" id="email" name="email">@ <select
 							class="form-control sel">
 							<option>naver.com</option>
 							<option>gmail.com</option>
@@ -69,18 +69,17 @@
 					</div>
 
 					<div class="form-group">
-						<label for="addr-num">주소</label> <input type="text"
-							class="form-control" id="addr-basic" placeholder="기본주소">
+						<label for="addr-num">주소</label> 
+						<input type="text" class="form-control" id="addr-basic" name="addr-basic" placeholder="기본주소">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="addr-detail"
-							placeholder="상세주소">
+						<input type="text" class="form-control" id="addr-detail" name="addr-detail"	placeholder="상세주소">
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-lg btn-success btn-block">회원가입</button>
+						<button type="button" class="btn btn-lg btn-success btn-block" onclick="join()">회원가입</button>
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-lg btn-info btn-block">로그인</button>
+						<button type="button" class="btn btn-lg btn-info btn-block" onclick="location.href='login.user'">로그인</button>
 					</div>
 				</form>
 			</div>
@@ -89,5 +88,15 @@
 
 
 </section>
+
+<script type="text/javascript">
+	//회원가입 버튼 submit처리
+	function join(){
+		document.joinForm.submit();
+
+	}
+</script>
+
+
 
 <%@ include file="../include/footer.jsp" %>

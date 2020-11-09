@@ -78,7 +78,7 @@ public class UserDAO {
 			pstmt.setString(4, vo.getEmail());
 			pstmt.setString(5, vo.getAddress());
 			//3. sql문 실행
-			result = pstmt.executeUpdate();//성공-1, 실패-0
+			result = pstmt.executeUpdate();//성공 1, 실패 0
 			
 			
 		} catch (Exception e) {
@@ -195,7 +195,7 @@ public class UserDAO {
 			pstmt.setString(5, vo.getId());
 			
 			result = pstmt.executeUpdate();
-				
+					
 			
 		} catch (SQLException e) {
 			System.out.println("회원정보 수정 메서드에서 에러 발생");

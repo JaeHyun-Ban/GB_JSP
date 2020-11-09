@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.testweb.util.filter.JdbcUtil;
+
 public class UserDAO {
 	
 	private DataSource ds;//server.xml에 설정한 값 얻어오기
@@ -41,6 +43,122 @@ public class UserDAO {
 		return instance;
 	}
 	
+	//회원가입 메서드
+	public int join(UserVO vo) {
+		
+		//1.가입sql 생성
+		String sql = "INSERT INTO members(id, password, name, phone1, phone2, phone3, email, addr_basic, addr_detail) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		int result = 0;//성공여부 반환
+		
+		try {
+			//2.연결 생성
+			conn = ds.getConnection();
+			//?를 채워주는 pstmt
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getPhone1());
+			pstmt.setString(5, vo.getPhone2());
+			pstmt.setString(6, vo.getPhone3());
+			pstmt.setString(7, vo.getEmail());
+			pstmt.setString(8, vo.getAddr_basic());
+			pstmt.setString(9, vo.getAddr_detail());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("join()메서드 에러 발생");
+			e.printStackTrace();
+			
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
+
+	//중복검사 메서드
+	public int checkID(String id) {
+		
+		//1.sql작성
+		String sql = "SELECT * FROM members WHERE id = ?";
+		
+		int result = 0;//결과값 반환
+		
+		try {
+			//2.연결생성
+			conn = ds.getConnection();
+			//3.pstmt생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {//중복 o
+				result = 1;
+			} else {//중복 x
+				result = 0;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("checkID()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			//4.닫아주기
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		
+		return result;
+	}
+
+	//로그인 처리 메서드
+	public UserVO login(String id, String password) {
+		
+		//1.로그인 sql
+		String sql = "SELECT * FROM members WHERE id = ? AND password = ?";
+		//반환할 vo객체
+		UserVO vo = new UserVO();
+		
+		try {
+			//2.연결생성
+			conn = ds.getConnection();
+			//pstmt
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {//회원 존재
+				vo.setId(id);
+				vo.setPassword(password);
+				vo.setName(rs.getString("name"));
+				vo.setPhone1(rs.getString("phone1"));
+				vo.setPhone2(rs.getString("phone2"));
+				vo.setPhone3(rs.getString("phone3"));
+				vo.setEmail(rs.getString("email"));
+				vo.setAddr_basic(rs.getString("addr_basic"));
+				vo.setAddr_detail(rs.getString("addr_detail"));
+				//>뽑아서 담아주기
+			} else {//없다면
+				vo = null;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("login()메서드 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+
+
 	
 	
 	

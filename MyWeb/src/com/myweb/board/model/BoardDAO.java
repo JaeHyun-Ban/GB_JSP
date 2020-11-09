@@ -126,35 +126,6 @@ public class BoardDAO {
 		return list;
 		
 	}
-	
-	//전체 게시글 수 - total
-	public int getTotal() {
-		
-		int total = 0;
-		
-		//count에 변수명을 생성해서 가져온다
-		String sql = "SELECT count(*) as total FROM board";
-		
-		try {
-			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				total = rs.getInt("total");
-			}
-
-		} catch (Exception e) {
-			System.out.println("getTotal()에서 에러 발생");
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(conn, pstmt, rs);
-		}
-		
-		return total;
-	}
-	
-	
 	/* 페이징 처리 전 getList()
 	public ArrayList<BoardVO> getList() {
 		
@@ -199,7 +170,36 @@ public class BoardDAO {
 		
 		return list;
 	}
-	*/
+	 */
+	
+	//전체 게시글 수 - total
+	public int getTotal() {
+		
+		int total = 0;
+		
+		//count에 변수명을 생성해서 가져온다
+		String sql = "SELECT count(*) as total FROM board";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt("total");
+			}
+
+		} catch (Exception e) {
+			System.out.println("getTotal()에서 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	
 	
 
 	public BoardVO getContent(String bno) {

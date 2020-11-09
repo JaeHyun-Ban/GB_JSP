@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=TestWeb/src&lt;com.testweb.user.service{UserService.java[UserService" modifiers="513" timestamp="1604833215732"/>
+<typeInfo handle="=TestWeb/src&lt;com.testweb.main.service{MainService.java[MainService" modifiers="513" timestamp="1604908898127"/>
+<typeInfo handle="=TestWeb/src&lt;com.myweb.bbs.service{BbsService.java[BbsService" modifiers="513" timestamp="1604900220762"/>
+<typeInfo handle="=TestWeb/src&lt;com.testweb.user.service{UserService.java[UserService" modifiers="513" timestamp="1604880129827"/>
 </typeInfoHistroy>
