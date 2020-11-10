@@ -12,10 +12,7 @@ public class RegistServiceImpl implements BbsService {
 		
 		String writer = request.getParameter("writer");
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		System.out.println(writer);
-		System.out.println(title);
-		System.out.println(content);
+		String content = request.getParameter("content");		
 		
 		BbsDAO dao = BbsDAO.getInstance();
 		

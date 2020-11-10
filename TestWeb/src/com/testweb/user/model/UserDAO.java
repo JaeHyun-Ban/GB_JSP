@@ -47,8 +47,8 @@ public class UserDAO {
 	public int join(UserVO vo) {
 		
 		//1.가입sql 생성
-		String sql = "INSERT INTO members(id, password, name, phone1, phone2, phone3, email, addr_basic, addr_detail) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO members(id, password, name, phone1, phone2, phone3, email, eaddr, addr_basic, addr_detail) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		int result = 0;//성공여부 반환
 		
@@ -65,8 +65,9 @@ public class UserDAO {
 			pstmt.setString(5, vo.getPhone2());
 			pstmt.setString(6, vo.getPhone3());
 			pstmt.setString(7, vo.getEmail());
-			pstmt.setString(8, vo.getAddr_basic());
-			pstmt.setString(9, vo.getAddr_detail());
+			pstmt.setString(8, vo.getEaddr());
+			pstmt.setString(9, vo.getAddr_basic());
+			pstmt.setString(10, vo.getAddr_detail());
 			
 			result = pstmt.executeUpdate();
 			
@@ -141,6 +142,7 @@ public class UserDAO {
 				vo.setPhone2(rs.getString("phone2"));
 				vo.setPhone3(rs.getString("phone3"));
 				vo.setEmail(rs.getString("email"));
+				vo.setEaddr(rs.getString("eaddr"));
 				vo.setAddr_basic(rs.getString("addr_basic"));
 				vo.setAddr_detail(rs.getString("addr_detail"));
 				//>뽑아서 담아주기
@@ -156,6 +158,67 @@ public class UserDAO {
 		}
 		
 		return vo;
+	}
+
+	//회원 삭제처리 메서드
+	public void delete(String id, String password) {
+		
+		//삭제 sql
+		String sql = "DELETE FROM members WHERE id = ? AND password = ?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("delete()메서드 에러 발생");
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+	//회원정보 수정 메서드
+	public void update(UserVO vo) {
+		//회원정보 수정 쿼리
+		String sql = "UPDATE members"
+					+ " SET password = ?,"
+					+ " name = ?,"
+					+ " phone1 = ?,"
+					+ " phone2 = ?,"
+					+ " phone3 = ?,"
+					+ " email = ?,"
+					+ " eaddr = ?,"
+					+ " addr_basic = ?,"
+					+ " addr_detail = ?"
+					+ " WHERE id = ?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getPhone1());
+			pstmt.setString(4, vo.getPhone2());
+			pstmt.setString(5, vo.getPhone3());
+			pstmt.setString(6, vo.getEmail());
+			pstmt.setString(7, vo.getEaddr());
+			pstmt.setString(8, vo.getAddr_basic());
+			pstmt.setString(9, vo.getAddr_detail());
+			pstmt.setString(10, vo.getId());
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println("update()메서드 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
 	}
 
 

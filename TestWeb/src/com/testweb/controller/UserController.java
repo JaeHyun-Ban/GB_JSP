@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import com.myweb.bbs.service.BbsService;
 import com.testweb.user.model.UserVO;
 import com.testweb.user.service.GetMyPageServiceImpl;
+import com.testweb.user.service.UserDeleteServiceImpl;
 import com.testweb.user.service.UserJoinServiceImpl;
 import com.testweb.user.service.UserLoginServiceImpl;
 import com.testweb.user.service.UserService;
+import com.testweb.user.service.UserUpdateServiceImpl;
 
 @WebServlet("*.user")
 public class UserController extends HttpServlet {
@@ -44,8 +46,6 @@ public class UserController extends HttpServlet {
 		String command = uri.substring(conPath.length());// 중간주소
 
 		// 분기 출력 확인
-		System.out.println("uri:" + uri);
-		System.out.println("conPath:" + conPath);
 		System.out.println("command:" + command);
 
 		// User의 서비스 기능 처리
@@ -73,6 +73,17 @@ public class UserController extends HttpServlet {
 		} else if (command.equals("/user/mypageinfo.user")) {
 			request.getRequestDispatcher("user_mypageinfo.jsp").forward(request, response);
 			
+			//정보수정 처리
+		} else if(command.equals("/user/update.user")) {
+			service = new UserUpdateServiceImpl();
+			int result = service.execute(request, response);
+			
+			if(result == 1) {//성공
+				response.sendRedirect("mypage.user");
+			} else {//실패
+				
+			}
+		
 			// 회원가입 처리
 		} else if (command.equals("/user/joinForm.user")) {
 
@@ -105,6 +116,18 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();//로그아웃
 			response.sendRedirect(request.getContextPath());
+			
+		} else if(command.equals("/user/delete.user")) {
+			service = new UserDeleteServiceImpl();
+			int result = service.execute(request, response);
+			
+			if(result == 1) {
+				//다시 로그인 화면으로
+				response.sendRedirect("login.user");
+			} else {
+				request.setAttribute("msg", "다시 확인해주세요");
+			}
+			
 			
 		}
 	}

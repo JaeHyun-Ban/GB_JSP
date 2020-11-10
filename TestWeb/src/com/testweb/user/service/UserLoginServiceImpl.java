@@ -15,9 +15,6 @@ public class UserLoginServiceImpl implements UserService {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
-		System.out.println(id);
-		System.out.println(password);
-		
 		UserDAO dao = UserDAO.getInstance();
 		UserVO user = dao.login(id, password);//1=존재
 		

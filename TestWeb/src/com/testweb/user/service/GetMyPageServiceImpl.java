@@ -17,6 +17,8 @@ public class GetMyPageServiceImpl implements BbsService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
+		//내가 작성한 글 전부 가져오기
+		
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("login");
 		String id = vo.getId();

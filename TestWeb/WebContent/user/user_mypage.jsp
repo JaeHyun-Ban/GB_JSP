@@ -20,13 +20,13 @@
                     </div>
                     <div>
                         <button type="button" class="btn btn-primary" onclick="location.href='mypageinfo.user'">회원정보변경</button>
-                        <button type="button" class="btn btn-primary" id="delCheck" onclick="location.href='deleteForm.user'">회원 탈퇴</button>
+                        <button type="button" class="btn btn-primary" id="delCheck">회원 탈퇴</button>
                         
                     </div>
                     <div class="delete-hidden">
-                        <form>
-                        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
-                        <button type="button" class="btn btn-primary">확인</button>
+                        <form action="delete.user" method="post" name="regForm">
+	                        <input type="password" name="password" class="form-control" placeholder="비밀번호를 입력하세요">
+	                        <button type="button" class="btn btn-primary" onclick="check()">확인</button>
                         </form>
                     </div>
                     
@@ -80,6 +80,12 @@
                 del.style.display = "none";
             }
         }
+        
+        //delete버튼 서브밋 버튼
+        function check() {
+        	document.regForm.submit();
+        }
+        
     </script>
     <script src="<%=request.getContextPath() %>/https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>

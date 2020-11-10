@@ -11,6 +11,7 @@ public class UserVO {
 	private String phone2;
 	private String phone3;
 	private String email;
+	private String eaddr;
 	private String addr_basic;
 	private String addr_detail;
 	private Timestamp regdate;
@@ -18,7 +19,7 @@ public class UserVO {
 	public UserVO() {}
 
 	public UserVO(String id, String password, String name, String phone1, String phone2, String phone3, String email,
-			String addr_basic, String addr_detail, Timestamp regdate) {
+			String eaddr, String addr_basic, String addr_detail, Timestamp regdate) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -27,6 +28,7 @@ public class UserVO {
 		this.phone2 = phone2;
 		this.phone3 = phone3;
 		this.email = email;
+		this.eaddr = eaddr;
 		this.addr_basic = addr_basic;
 		this.addr_detail = addr_detail;
 		this.regdate = regdate;
@@ -88,6 +90,14 @@ public class UserVO {
 		this.email = email;
 	}
 
+	public String getEaddr() {
+		return eaddr;
+	}
+
+	public void setEaddr(String eaddr) {
+		this.eaddr = eaddr;
+	}
+
 	public String getAddr_basic() {
 		return addr_basic;
 	}
@@ -112,10 +122,6 @@ public class UserVO {
 		this.regdate = regdate;
 	}
 
-	
-
-	
-	
 	
 	
 }

@@ -18,6 +18,7 @@ public class UserJoinServiceImpl implements UserService {
 		String phone2 = request.getParameter("phone2");
 		String phone3 = request.getParameter("phone3");
 		String email = request.getParameter("email");
+		String eaddr = request.getParameter("eaddr");
 		String addr_basic = request.getParameter("addr-basic");
 		String addr_detail = request.getParameter("addr-detail");
 		
@@ -30,7 +31,7 @@ public class UserJoinServiceImpl implements UserService {
 		if(result == 1) {
 			return 1;
 		} else {
-			UserVO vo = new UserVO(id, password, name, phone1, phone2, phone3, email, addr_basic, addr_detail, null);
+			UserVO vo = new UserVO(id, password, name, phone1, phone2, phone3, email, eaddr, addr_basic, addr_detail, null);
 			dao.join(vo);
 			
 			return 0;
