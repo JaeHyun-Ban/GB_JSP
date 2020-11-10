@@ -208,19 +208,12 @@ public class BbsDAO {
 	public ArrayList<BbsVO> mypage(String id) {
 		ArrayList<BbsVO> list = new ArrayList<>();
 		
-		String sql = "SELECT * \r\n" + 
-				"FROM(\r\n" + 
-				"    SELECT ROWNUM r, \r\n" + 
-				"           bno,\r\n" + 
-				"           writer,\r\n" + 
-				"           title,\r\n" + 
-				"           content,\r\n" + 
-				"           regdate\r\n" + 
-				"    FROM (SELECT *\r\n" + 
-				"          FROM bbs\r\n" + 
-				"          ORDER BY bno DESC)\r\n" + 
-				"    ) \r\n" + 
-				"WHERE r > 0 AND r <= 10 AND writer = ?";
+		String sql = "SELECT * " + 
+					"FROM bbs b\r\n" + 
+					"LEFT OUTER JOIN members m\r\n" + 
+					"ON b.writer = m.id\r\n" + 
+					"where b.writer = ?\r\n" + 
+					"ORDER BY b.bno DESC";
 		
 		
 		try {
