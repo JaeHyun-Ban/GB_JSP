@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.myweb.bbs.service.BbsService;
+import com.testweb.bbs.service.BbsService;
 import com.testweb.user.model.UserVO;
 import com.testweb.user.service.GetMyPageServiceImpl;
 import com.testweb.user.service.UserDeleteServiceImpl;

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.testweb.util.filter.JdbcUtil;
+import com.testweb.util.JdbcUtil;
 
 public class UserDAO {
 	

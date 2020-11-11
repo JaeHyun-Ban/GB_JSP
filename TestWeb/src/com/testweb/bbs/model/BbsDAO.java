@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.testweb.util.filter.JdbcUtil;
+import com.testweb.util.JdbcUtil;
 
 public class BbsDAO {
 	private DataSource ds;// server.xml에 설정한 값 얻어오기
@@ -45,19 +45,56 @@ public class BbsDAO {
 	
 	
 	//게시글 가져오기
-	public ArrayList<BbsVO> getList(){
-		
+	/*
+	 * public ArrayList<BbsVO> getList(){
+	 * 
+	 * ArrayList<BbsVO> list = new ArrayList<>();
+	 * 
+	 * //최신글 = 가장 마지막 입력됨 > bno거꾸로 String sql =
+	 * "SELECT * FROM bbs ORDER BY bno DESC";
+	 * 
+	 * try { conn = ds.getConnection(); pstmt = conn.prepareStatement(sql); rs =
+	 * pstmt.executeQuery();
+	 * 
+	 * //존재하는 글 전부 가져오기 - while while(rs.next()) { int bno = rs.getInt("bno");
+	 * String writer = rs.getString("writer"); String title = rs.getString("title");
+	 * String content = rs.getString("content"); Timestamp regdate =
+	 * rs.getTimestamp("regdate");
+	 * 
+	 * //모든 값을 꺼내와 vo에 넣고 BbsVO vo = new BbsVO(bno, writer, title, content,
+	 * regdate); //list에 추가 list.add(vo); } } catch (Exception e) {
+	 * System.out.println("getList()메서드 에러 발생"); e.printStackTrace(); } finally {
+	 * JdbcUtil.close(conn, pstmt, rs); }
+	 * 
+	 * return list; }
+	 */
+	//페이징 처리, 게시글
+	public ArrayList<BbsVO> getList(int pageNum, int amount){
+			
 		ArrayList<BbsVO> list = new ArrayList<>();
 		
-		//최신글 = 가장 마지막 입력됨 > bno거꾸로
-		String sql = "SELECT * FROM bbs ORDER BY bno DESC";
+		//sql 생성
+		String sql = "SELECT * \r\n" + 
+				"FROM(\r\n" + 
+				"    SELECT ROWNUM rn,\r\n" + 
+				"           bno,\r\n" + 
+				"           writer,\r\n" + 
+				"           title,\r\n" + 
+				"           content,\r\n" + 
+				"           regdate\r\n" + 
+				"    FROM (\r\n" + 
+				"    SELECT * FROM bbs\r\n" + 
+				"    ORDER BY bno DESC)\r\n" + 
+				"    )\r\n" + 
+				"WHERE RN > ? AND RN <= ?";
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pageNum - 1)*amount);
+			pstmt.setInt(2, pageNum*amount);
 			rs = pstmt.executeQuery();
 			
-			//존재하는 글 전부 가져오기 - while
 			while(rs.next()) {
 				int bno = rs.getInt("bno");
 				String writer = rs.getString("writer");
@@ -65,20 +102,19 @@ public class BbsDAO {
 				String content = rs.getString("content");
 				Timestamp regdate = rs.getTimestamp("regdate");
 				
-				//모든 값을 꺼내와 vo에 넣고
 				BbsVO vo = new BbsVO(bno, writer, title, content, regdate);
-				//list에 추가
 				list.add(vo);
-			}
+			}	
 		} catch (Exception e) {
 			System.out.println("getList()메서드 에러 발생");
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
-		
-		return list;
+		return list;	
 	}
+	
+	
 	
 	//글 상세보기(글번호)
 	public BbsVO content(int bno) {
@@ -243,6 +279,33 @@ public class BbsDAO {
 		
 		return list;
 		
+	}
+	
+	//전체 게시글 수
+	public int getTotal() {
+		
+		int total = 0;
+		
+		//전체 게시글 조회 sql
+		String sql = "SELECT count(*) as total FROM bbs";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt("total");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getTotal()메서드 에러 발생");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+			
+		}
+		return total;
 	}
 
 	

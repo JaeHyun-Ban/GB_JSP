@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.myweb.bbs.service.BbsService;
-import com.myweb.bbs.service.ContentServiceImpl;
-import com.myweb.bbs.service.GetListServiceImpl;
-import com.myweb.bbs.service.UpdateServiceImpl;
-import com.myweb.bbs.service.RegistServiceImpl;
+import com.testweb.bbs.service.BbsService;
+import com.testweb.bbs.service.ContentServiceImpl;
+import com.testweb.bbs.service.GetListServiceImpl;
+import com.testweb.bbs.service.RegistServiceImpl;
+import com.testweb.bbs.service.UpdateServiceImpl;
 import com.testweb.user.service.UserJoinServiceImpl;
 import com.testweb.user.service.UserService;
 
